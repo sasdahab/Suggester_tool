@@ -12,7 +12,7 @@ def tool_integration():
         if register.status_code==200:
             t=threading.Thread(target=ping_alert_list(cookie))
             t.start()
-    return register
+    return authentication #register
 
 def tool_authenticate():
     url="http://194.2.241.244/measure/api/authentication"
@@ -43,7 +43,7 @@ def ping_alert_list(cookie):
     while True:
         time.sleep(10)
         alerts=tool_alert_list(cookie)
-        if alerts.code_status!=200
+        if alerts.status_code!=200:
             authentication=tool_authenticate()
             if authentication.status_code==200:
                 cookie=authentication.headers['Set-Cookie']
